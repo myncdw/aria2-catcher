@@ -115,7 +115,7 @@
     shadow.appendChild(style);
 
     const wrap = document.createElement("div");
-    wrap.innerHTML = buildMarkup(cfg);
+    wrap.appendChild(buildOverlay(cfg));
     shadow.appendChild(wrap);
 
     // 应用主题变量
@@ -133,47 +133,83 @@
     bindEvents(shadow);
   }
 
-  function buildMarkup(cfg) {
+  // 用 DOM API 构建覆盖层（避免 innerHTML，满足 AMO 审核要求）
+  function buildOverlay(cfg) {
     const name1 = (cfg.downloader1 && cfg.downloader1.name) || "下载器1";
     const name2 = (cfg.downloader2 && cfg.downloader2.name) || "下载器2";
     const d1ok = isConfigured(cfg.downloader1);
     const d2ok = isConfigured(cfg.downloader2);
+    const d2Enabled = isEnabled(cfg.downloader2);
+
+    const el = (tag, cls, text) => {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    };
+
+    const frag = document.createDocumentFragment();
+
+    frag.appendChild(el("div", "backdrop"));
+
+    const card = el("div", "card");
+
+    const header = el("div", "header");
+    header.appendChild(el("span", "title", "下载方式选择"));
+    const close = el("button", "close", "×");
+    close.title = "关闭（取消下载）";
+    header.appendChild(close);
+    card.appendChild(header);
+
+    const fField = el("div", "field");
+    fField.appendChild(el("label", null, "文件名"));
+    const fInput = el("input", "filename");
+    fInput.type = "text";
+    fInput.spellcheck = false;
+    fField.appendChild(fInput);
+    card.appendChild(fField);
+
+    const urlField = el("div", "field");
+    urlField.appendChild(el("label", null, "链接"));
+    const urlRow = el("div", "url-row");
+    const urlInput = el("input", "url");
+    urlInput.type = "text";
+    urlInput.readOnly = true;
+    urlRow.appendChild(urlInput);
+    const copy = el("button", "copy", "⧉");
+    copy.title = "复制链接";
+    urlRow.appendChild(copy);
+    urlField.appendChild(urlRow);
+    card.appendChild(urlField);
+
+    card.appendChild(el("div", "status hidden"));
+
+    const errorBox = el("div", "error-box hidden");
+    const errSummary = el("div", "error-summary");
+    errSummary.appendChild(el("span", null, "✕ 下载失败"));
+    const errToggle = el("button", "error-toggle", "错误详情 ▸");
+    errSummary.appendChild(errToggle);
+    errorBox.appendChild(errSummary);
+    errorBox.appendChild(el("pre", "error-detail hidden"));
+    card.appendChild(errorBox);
+
+    const actions = el("div", "actions");
+    const dl1 = el("button", "btn primary dl1", name1);
+    if (!d1ok) { dl1.disabled = true; dl1.title = "请先在设置中配置下载器1"; }
+    actions.appendChild(dl1);
+
     // 下载器2 未启用时隐藏其按钮，剩余两个按钮自动拉长
-    const d2Btn = isEnabled(cfg.downloader2)
-      ? `<button class="btn primary dl2" ${d2ok ? "" : "disabled title='请先在设置中配置下载器2'"}>${escapeHtml(name2)}</button>`
-      : "";
-    return `
-      <div class="backdrop"></div>
-      <div class="card">
-        <div class="header">
-          <span class="title">下载方式选择</span>
-          <button class="close" title="关闭（取消下载）">×</button>
-        </div>
-        <div class="field">
-          <label>文件名</label>
-          <input class="filename" type="text" spellcheck="false">
-        </div>
-        <div class="field">
-          <label>链接</label>
-          <div class="url-row">
-            <input class="url" type="text" readonly>
-            <button class="copy" title="复制链接">⧉</button>
-          </div>
-        </div>
-        <div class="status hidden"></div>
-        <div class="error-box hidden">
-          <div class="error-summary">
-            <span>✕ 下载失败</span>
-            <button class="error-toggle">错误详情 ▸</button>
-          </div>
-          <pre class="error-detail hidden"></pre>
-        </div>
-        <div class="actions">
-          <button class="btn primary dl1" ${d1ok ? "" : "disabled title='请先在设置中配置下载器1'"}>${escapeHtml(name1)}</button>
-          ${d2Btn}
-          <button class="btn save">保存</button>
-        </div>
-      </div>`;
+    if (d2Enabled) {
+      const dl2 = el("button", "btn primary dl2", name2);
+      if (!d2ok) { dl2.disabled = true; dl2.title = "请先在设置中配置下载器2"; }
+      actions.appendChild(dl2);
+    }
+
+    actions.appendChild(el("button", "btn save", "保存"));
+    card.appendChild(actions);
+
+    frag.appendChild(card);
+    return frag;
   }
 
   function bindEvents(shadow) {
@@ -312,11 +348,5 @@
     return host !== "" &&
            Number.isInteger(port) && port >= 1 && port <= 65535 &&
            typeof d.path === "string" && d.path.trim() !== "";
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, (c) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-    })[c]);
   }
 })();
