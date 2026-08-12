@@ -9,6 +9,9 @@ __pycache__/
 *.zip
 *.xpi
 
+# 本地打包脚本（开发工具，不入库）
+package.py
+
 # 本机企业策略模板（含本机绝对路径，不入库）
 policies.json
 
