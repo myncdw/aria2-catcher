@@ -1,0 +1,104 @@
+/* 欢迎页样式 */
+:root {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #1e1e1e;
+  --muted: #6b6b6b;
+  --border: #e0e0e0;
+  --accent: #2e7d32;
+  --code-bg: #eef1ee;
+}
+html.dark {
+  --bg: #1f1f1f;
+  --card: #2b2b2b;
+  --text: #e8e8e8;
+  --muted: #9a9a9a;
+  --border: #3c3c3c;
+  --accent: #4caf50;
+  --code-bg: #222222;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.18s;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.hero {
+  text-align: center;
+  padding: 8px 0 20px;
+}
+
+.hero .logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+}
+
+.hero h1 {
+  font-size: 22px;
+  margin: 14px 0 6px;
+}
+
+.hero .sub {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.card h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.card ol,
+.card ul {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.9;
+  font-size: 13.5px;
+}
+
+.card code {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+}
+
+.actions {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.btn {
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 13px 34px;
+  cursor: pointer;
+  transition: filter 0.12s;
+}
+.btn:hover { filter: brightness(1.08); }

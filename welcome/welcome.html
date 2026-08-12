@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>欢迎使用 Aria2 Catcher</title>
+  <link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <img src="../aria.png" class="logo" alt="logo">
+      <h1>欢迎使用 Aria2 Catcher</h1>
+      <p class="sub">把浏览器的下载交给 Aria2——多线程、断点续传,下载更快更稳定。</p>
+    </header>
+
+    <section class="card">
+      <h2>🚀 三步上手</h2>
+      <ol class="steps">
+        <li>点击下方「<b>打开设置</b>」,配置你的 Aria2 RPC 地址(支持 HTTP / WebSocket 两种协议)</li>
+        <li>在设置页保持「全局开关」开启(默认已开启)</li>
+        <li>点击网页里的下载链接 → 在弹窗中选择下载器 → Aria2 开始下载</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>✨ 功能亮点</h2>
+      <ul class="features">
+        <li>自动截获下载请求,不再出现浏览器原生下载窗</li>
+        <li>完整透传 <code>Referer</code> / <code>Cookie</code> / <code>User-Agent</code>,带鉴权的链接也能正常下载</li>
+        <li>支持两个下载器独立配置,可只启用其中一个</li>
+        <li>下载选择弹窗支持「独立小窗」与「页面内覆盖」两种形式</li>
+        <li>Aria2 下载完成后可发系统通知(需在设置中开启)</li>
+        <li>全界面深色模式,默认开启</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>💡 小提示</h2>
+      <ul class="tips">
+        <li>请确保 Aria2 已开启 RPC(<code>--enable-rpc</code>),端口与密钥需与设置页一致</li>
+        <li>文件保存位置由 Aria2 服务端配置的目录决定,扩展不会干预</li>
+        <li>想临时用浏览器自带下载?把图标面板里的「全局开关」关掉即可</li>
+      </ul>
+    </section>
+
+    <div class="actions">
+      <button id="btnOptions" class="btn primary">⚙ 打开设置</button>
+    </div>
+  </div>
+
+  <script src="../lib/defaults.js"></script>
+  <script src="welcome.js"></script>
+</body>
+</html>

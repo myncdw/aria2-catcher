@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="window.css">
+</head>
+<body>
+  <div class="popup">
+    <div class="header">
+      <span class="title">下载方式选择</span>
+      <button id="btnClose" class="close" title="关闭（取消下载）">×</button>
+    </div>
+
+    <div class="field">
+      <label for="filename">文件名</label>
+      <input id="filename" type="text" spellcheck="false">
+    </div>
+
+    <div class="field">
+      <label for="url">链接</label>
+      <div class="url-row">
+        <input id="url" type="text" readonly>
+        <button id="btnCopy" class="copy" title="复制链接">⧉</button>
+      </div>
+    </div>
+
+    <div id="status" class="status hidden"></div>
+
+    <div id="errorBox" class="error-box hidden">
+      <div class="error-summary">
+        <span class="error-icon">✕</span> 下载失败
+        <button id="btnToggleError" class="error-toggle">错误详情 ▸</button>
+      </div>
+      <pre id="errorDetail" class="error-detail hidden"></pre>
+    </div>
+
+    <div class="actions">
+      <button id="btnDl1" class="btn primary">下载器1</button>
+      <button id="btnDl2" class="btn primary">下载器2</button>
+      <button id="btnSave" class="btn">保存</button>
+    </div>
+  </div>
+
+  <script src="../lib/defaults.js"></script>
+  <script src="window.js"></script>
+</body>
+</html>

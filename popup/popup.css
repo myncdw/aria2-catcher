@@ -1,0 +1,126 @@
+/* 图标面板样式 */
+:root {
+  --card: #ffffff;
+  --text: #1e1e1e;
+  --muted: #6b6b6b;
+  --border: #e0e0e0;
+  --accent: #2e7d32;
+  --track: #d9d9d9;
+}
+html.dark {
+  --card: #2b2b2b;
+  --text: #e8e8e8;
+  --muted: #9a9a9a;
+  --border: #3c3c3c;
+  --accent: #4caf50;
+  --track: #3f3f3f;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: var(--card);
+  color: var(--text);
+  width: 264px;
+}
+
+.panel {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.panel-logo {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+}
+
+.panel-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-text {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--muted);
+}
+html.dark .status-text {
+  background: rgba(255, 255, 255, 0.06);
+}
+.status-text.on {
+  color: var(--accent);
+  background: rgba(76, 175, 80, 0.12);
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: var(--track);
+  transition: background 0.18s;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.18s;
+}
+.switch input:checked + .slider {
+  background: var(--accent);
+}
+.switch input:checked + .slider::before {
+  transform: translateX(18px);
+}
+
+.settings-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 0;
+  font-size: 13px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text);
+}
+html.dark .settings-btn {
+  background: rgba(255, 255, 255, 0.08);
+}
+.settings-btn:hover {
+  filter: brightness(1.05);
+}

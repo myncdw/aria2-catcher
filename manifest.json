@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "Aria2 Catcher",
+  "version": "1.0.0",
+  "description": "截获浏览器下载请求并转发至 Aria2 RPC，支持双下载器、Headers 透传、深色模式与下载完成通知。",
+  "icons": {
+    "16": "aria.png",
+    "32": "aria.png",
+    "48": "aria.png",
+    "128": "aria.png"
+  },
+  "permissions": [
+    "downloads",
+    "cookies",
+    "storage",
+    "notifications",
+    "activeTab",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src 'self' http: https: ws: wss:;"
+  },
+  "background": {
+    "scripts": [
+      "lib/defaults.js",
+      "lib/aria2.js",
+      "background.js"
+    ]
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "下载截获至 Aria2 RPC",
+    "default_icon": {
+      "16": "aria.png",
+      "32": "aria.png",
+      "48": "aria.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "exclude_matches": [
+        "*://addons.mozilla.org/*"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "aria2-catcher@myncdw.top",
+      "strict_min_version": "109.0"
+    }
+  }
+}

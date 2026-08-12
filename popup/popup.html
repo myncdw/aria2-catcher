@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="panel">
+    <div class="panel-header">
+      <img src="../aria.png" class="panel-logo" alt="">
+      <span class="panel-title">Aria2 Catcher</span>
+    </div>
+
+    <div id="statusText" class="status-text on">● 已启用拦截</div>
+
+    <label class="switch-row">
+      <span class="switch-label">全局开关</span>
+      <span class="switch">
+        <input type="checkbox" id="toggleEnabled">
+        <span class="slider"></span>
+      </span>
+    </label>
+
+    <button id="btnSettings" class="settings-btn">⚙ 设置</button>
+  </div>
+
+  <script src="../lib/defaults.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

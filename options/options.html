@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>下载截获扩展 - 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="page">
+    <h1>⚙ Aria2 Catcher - 设置</h1>
+
+    <!-- 下载器1 -->
+    <section class="card" id="card-d1">
+      <h2>── 下载器1 ──</h2>
+      <div class="row">
+        <label for="d1_name">名称</label>
+        <input id="d1_name" type="text" placeholder="下载器1">
+      </div>
+      <div class="row address">
+        <label for="d1_protocol">地址</label>
+        <select id="d1_protocol">
+          <option value="http">HTTP</option>
+          <option value="https">HTTPS</option>
+          <option value="ws">WebSocket</option>
+          <option value="wss">WebSocket Secure</option>
+        </select>
+        <input id="d1_host" type="text" placeholder="IP / 域名" autocomplete="off">
+        <span class="sep">:</span>
+        <input id="d1_port" type="text" inputmode="numeric" placeholder="端口" autocomplete="off">
+        <span class="sep">/</span>
+        <input id="d1_path" type="text" placeholder="jsonrpc" autocomplete="off">
+      </div>
+      <div class="row">
+        <label for="d1_secret">密钥</label>
+        <input id="d1_secret" type="password" placeholder="可选" autocomplete="new-password">
+      </div>
+      <div class="hint" id="d1_hint"></div>
+    </section>
+
+    <!-- 下载器2 -->
+    <section class="card" id="card-d2">
+      <h2>── 下载器2 ──</h2>
+      <label class="row switch-row">
+        <span class="switch-name">启用</span>
+        <span class="switch">
+          <input type="checkbox" id="d2_enabled">
+          <span class="slider"></span>
+        </span>
+      </label>
+      <div class="row">
+        <label for="d2_name">名称</label>
+        <input id="d2_name" type="text" placeholder="下载器2">
+      </div>
+      <div class="row address">
+        <label for="d2_protocol">地址</label>
+        <select id="d2_protocol">
+          <option value="http">HTTP</option>
+          <option value="https">HTTPS</option>
+          <option value="ws">WebSocket</option>
+          <option value="wss">WebSocket Secure</option>
+        </select>
+        <input id="d2_host" type="text" placeholder="IP / 域名" autocomplete="off">
+        <span class="sep">:</span>
+        <input id="d2_port" type="text" inputmode="numeric" placeholder="端口" autocomplete="off">
+        <span class="sep">/</span>
+        <input id="d2_path" type="text" placeholder="jsonrpc" autocomplete="off">
+      </div>
+      <div class="row">
+        <label for="d2_secret">密钥</label>
+        <input id="d2_secret" type="password" placeholder="可选" autocomplete="new-password">
+      </div>
+      <div class="hint" id="d2_hint"></div>
+    </section>
+
+    <!-- 杂项 -->
+    <section class="card">
+      <h2>── 杂项 ──</h2>
+      <label class="row switch-row">
+        <span class="switch-name">深色模式</span>
+        <span class="switch">
+          <input type="checkbox" id="darkMode">
+          <span class="slider"></span>
+        </span>
+      </label>
+      <label class="row switch-row">
+        <span class="switch-name">完成后是否提示</span>
+        <span class="switch">
+          <input type="checkbox" id="notifyOnComplete">
+          <span class="slider"></span>
+        </span>
+      </label>
+      <div class="row">
+        <label for="popupType">下载弹窗方式</label>
+        <select id="popupType" class="wide">
+          <option value="window">浏览器窗口</option>
+          <option value="overlay">在页面右上角覆盖弹出</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="btnSave" class="btn primary">💾 保存</button>
+      <button id="btnReset" class="btn">🔄 恢复默认</button>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+  </div>
+
+  <script src="../lib/defaults.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
