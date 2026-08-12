@@ -2,7 +2,9 @@
 
 *此插件全部由AI编写*
 
-根据 `PRD.md`（V3.0）实现的 Firefox 扩展：拦截浏览器下载请求，可转发至 **Aria2 RPC**（双下载器独立配置），或选择浏览器原生保存。仓库名 / 插件名：**aria2-catcher**。
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+根据 `PRD.md`实现的 Firefox 扩展：拦截浏览器下载请求，可转发至 **Aria2 RPC**（双下载器独立配置），或选择浏览器原生保存。仓库名 / 插件名：**aria2-catcher**。
 
 ## 功能特性
 
@@ -58,3 +60,7 @@ aria2/
 - 仅拦截 HTTP/HTTPS 下载；`blob:` / `data:` / `ftp:` 等由 Firefox 原生处理
 - `blob:` / `data:` / `ftp:` 等协议链接直接交给浏览器，不弹出扩展弹窗
 - **CSP 说明**：Firefox MV3 默认 CSP 包含 `upgrade-insecure-requests`，会把 `ws://` 升级为 `wss://`、`http://` 升级为 `https://`，导致连接本地 Aria2 失败。本扩展已在 `manifest.json` 中显式声明 `content_security_policy`（`connect-src 'self' http: https: ws: wss:`）以排除该指令——仅放开连接权限，脚本来源仍被严格限制为扩展自身。若修改 manifest 时误删该项，本地 RPC 将无法连通。
+
+## 许可证
+
+[MIT](LICENSE) © 2026 myncdw
