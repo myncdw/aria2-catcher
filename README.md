@@ -42,7 +42,7 @@
 aria2/
 ├── manifest.json          # 扩展清单（MV3）
 ├── background.js          # 后台：下载截获 / RPC 调用 / 通知
-├── aria.png               # 扩展图标
+├── icons/                 # 扩展图标（16/32/48/128 多尺寸）
 ├── lib/
 │   ├── defaults.js        # 默认配置与工具函数
 │   └── aria2.js           # Aria2 JSON-RPC 客户端（HTTP/WS）

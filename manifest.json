@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "description": "截获浏览器下载请求并转发至 Aria2 RPC，支持双下载器、Headers 透传、深色模式与下载完成通知。",
   "icons": {
-    "16": "aria-16.png",
-    "32": "aria-32.png",
-    "48": "aria-48.png",
-    "128": "aria.png"
+    "16": "icons/aria2-catcher-16.png",
+    "32": "icons/aria2-catcher-32.png",
+    "48": "icons/aria2-catcher-48.png",
+    "128": "icons/aria2-catcher-128.png"
   },
   "permissions": [
     "downloads",
@@ -36,9 +36,9 @@
     "default_popup": "popup/popup.html",
     "default_title": "下载截获至 Aria2 RPC",
     "default_icon": {
-      "16": "aria-16.png",
-      "32": "aria-32.png",
-      "48": "aria-48.png"
+      "16": "icons/aria2-catcher-16.png",
+      "32": "icons/aria2-catcher-32.png",
+      "48": "icons/aria2-catcher-48.png"
     }
   },
   "content_scripts": [

@@ -297,7 +297,7 @@ async function sendCompleteNotification(filename) {
   try {
     await browser.notifications.create({
       type: "basic",
-      iconUrl: browser.runtime.getURL("aria.png"),
+      iconUrl: browser.runtime.getURL("icons/aria2-catcher-128.png"),
       title: "下载完成",
       message: filename || "文件已下载完成"
     });
